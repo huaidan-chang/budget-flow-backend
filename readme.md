@@ -50,7 +50,7 @@ You can find these in your Plaid dashboard.
     ```bash
     firebase deploy
     ```
-7. After deploy complete, you'll see four function URL in the terminal.
+7. After deploy completed, you'll see four function URL in the terminal.
     ```bash
     Function URL (createPublicTokens(us-central1)): https://us-central1-your-project-name.cloudfunctions.net/createPublicTokens
     Function URL (exchangePublicTokensAndStore(us-central1)): https://us-central1-your-project-name.cloudfunctions.net/exchangePublicTokensAndStore
@@ -62,18 +62,18 @@ Invoke the deployed functions via HTTP requests to handle bank connections, tran
 
 #### Test with Postman using your Function URL
 This guide explains how to test the Firebase functions for a financial management system using Postman. Ensure you have Postman installed to proceed with testing.
-1. Create Public Key  
-    Creates and stores new public tokens for a set of predefined institution IDs and clears any existing tokens from the Firestore. In the deployed version, Chase(ins_56), Bank of America (ins_127989), Capital One (ins_128026) are used.
+##### 1. Create Public Key  
+Creates and stores new public tokens for a set of predefined institution IDs and clears any existing tokens from the Firestore. In the deployed version, Chase(ins_56), Bank of America (ins_127989), Capital One (ins_128026) are used.
    - **URL**: `https://us-central1-your-project-name.cloudfunctions.net/createPublicTokens`
    - **Method**: `POST`
    - **Body**: No payload required for this function.
-2. Exchange Public Key  
-    Exchanges public tokens for access tokens and updates the Firestore accessTokens collection.
+##### 2. Exchange Public Key  
+Exchanges public tokens for access tokens and updates the Firestore accessTokens collection.
    - **URL**: `https://us-central1-your-project-name.cloudfunctions.net/exchangePublicTokensAndStore`
    - **Method**: `POST`
    - **Body**: No payload required for this function.
-3. Get Transactions  
-   Fetches transactions within a specified date range for each access token stored in Firestore, then stores these transactions in the Firestore transactions collection.
+##### 3. Get Transactions  
+Fetches transactions within a specified date range for each access token stored in Firestore, then stores these transactions in the Firestore transactions collection.
    - **URL**: `https://us-central1-your-project-name.cloudfunctions.net/getTransactions`
    - **Method**: `POST`
    - **Body**: Specify the start and end dates for the transaction period.
@@ -83,8 +83,8 @@ This guide explains how to test the Firebase functions for a financial managemen
             "end_date": "2024-06-01"
         }
         ```
-4. Calculate Monthly Budget  
-   Calculates the total expenditure per category from transactions stored in Firestore and estimates monthly budgets.
+##### 4. Calculate Monthly Budget  
+Calculates the total expenditure per category from transactions stored in Firestore and estimates monthly budgets.
    - **URL**: `https://us-central1-your-project-name.cloudfunctions.net/calculateMonthlyBudget`
    - **Method**: `GET`
    - **Body**: No payload required for this function.
